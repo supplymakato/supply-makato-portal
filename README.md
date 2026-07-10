@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Management Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col md:flex-row">
+
+    <aside class="w-full md:w-64 bg-white border-r border-slate-200 flex flex-col shrink-0">
+        <div class="p-6 border-b border-slate-200">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">ASU-MAKATO SUPPLY OFFICE FORMS</h2>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-1">
+            <button onclick="filterPhase('all')" id="btn-all" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-semibold rounded-lg bg-blue-50 text-blue-600 transition-all">
+                <i class="fa-solid fa-layer-group w-5"></i>
+                <span>All Forms</span>
+            </button>
+            <hr class="my-2 border-slate-200">
+            <button onclick="filterPhase('phase-1')" id="btn-phase-1" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-cart-shopping w-5"></i>
+                <span class="text-left">1. Procurement & Receipt</span>
+            </button>
+            <button onclick="filterPhase('phase-2')" id="btn-phase-2" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-boxes-stacked w-5"></i>
+                <span class="text-left">2. Custody & Tracking</span>
+            </button>
+            <button onclick="filterPhase('phase-3')" id="btn-phase-3" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-clipboard-list w-5"></i>
+                <span class="text-left">3. Requisition & Issuance</span>
+            </button>
+            <button onclick="filterPhase('phase-4')" id="btn-phase-4" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-truck-ramp-box w-5"></i>
+                <span class="text-left">4. Transfer & Disposal</span>
+            </button>
+            <button onclick="filterPhase('phase-5')" id="btn-phase-5" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-wallet w-5"></i>
+                <span class="text-left">5. Petty Cash Operations</span>
+            </button>
+            <button onclick="filterPhase('phase-coa')" id="btn-phase-coa" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-building-shield w-5"></i>
+                <span class="text-left">COA Submissions</span>
+            </button>
+            <button onclick="filterPhase('phase-7')" id="btn-phase-7" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-gavel w-5"></i>
+                <span class="text-left">7. Regulatory & Circulars</span>
+            </button>
+        </nav>
+
+        <div class="p-4 border-t border-slate-200 text-center">
+            <p class="text-[10px] text-slate-400"> Developed by D.V.LABAJO<br>©2026 Supply Office Makato Portal.<br>Internal Use Only.</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+        
+        <header class="bg-[#111c2a] text-white px-8 py-6 shadow-md flex flex-col sm:flex-row items-center gap-6">
+            <div class="shrink-0">
+                <img src="Logo.png" alt="ASU Supply Banner" class="h-24 md:h-28 rounded-lg shadow-md border border-slate-700 object-cover">
+            </div>
+            <div class="text-center sm:text-left">
+                <h1 class="text-lg md:text-xl font-extrabold uppercase tracking-wider text-white">ASU-MAKATO SUPPLY AND PROPERTY MANAGEMENT PORTAL</h1>
+                <p class="text-xs text-slate-300 font-medium uppercase tracking-widest mt-1">Access, download, and manage official supply documents.</p>
+            </div>
+        </header>
+
+        <div class="p-8 flex-1 overflow-y-auto">
+            <div id="forms-container" class="space-y-12">
+
+                <section id="phase-1" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping text-blue-600"></i> 1. Procurement & Receipt Phase
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PURCHASE REQUEST (PR)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 60</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Requesting authority to procure supplies, goods, or services required for official tasks.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1WCm2Y0GbPCKd_gMVHJF9LRcxG6CtmEmrhlW-C6-hRes/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PURCHASE ORDER (PO)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 61</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Official contract document issued to suppliers detailing agreed items, quantities, and prices.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1WCm2Y0GbPCKd_gMVHJF9LRcxG6CtmEmrhlW-C6-hRes/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">INSPECTION & ACCEPTANCE REPORT (IAR)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 62</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Document acknowledgment of delivered goods. Used to confirm incoming inspection specifications.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1tbCXCY9iSN6EnIUHhlPN7uHNR-OltsVJ-btvLLfM1lc/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase-2" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-boxes-stacked text-blue-600"></i> 2. Custody & Tracking Phase
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">STOCK CARD (SC)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 58</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Maintained by the supply unit to track inventory quantity ledgers of regular items in stock.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1asWXzWvz9xvJ099bYcsHdDrmtPfMJK7UokEYOHsxb_Y/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PROPERTY CARD (PC)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 71</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Tracks the lifecycle history, deployment logs, and values of fixed assets or capital equipment items.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1-4fyVLalZRh0fJXDdAOubuDNaQCA6q6TIzM1ay-kQIU/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase-3" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-list text-blue-600"></i> 3. Requisition & Issuance Phase
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">REQUISITION & ISSUE SLIP (RIS)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 63</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Requesting departments utilize this layout to draw standard item units out from stored inventory stock.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/12O05vCOjrs_BtTJtt7lAZue7bnubndXpeV-mQQrhZFc/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">REPORT OF SUPPLIES & MATERIALS ISSUED (RSMI)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 64</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Consolidates all item disbursements authorized via RIS throughout operational windows.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/12O05vCOjrs_BtTJtt7lAZue7bnubndXpeV-mQQrhZFc/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">INVENTORY CUSTODIAN SLIP (ICS)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 59</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Logs explicit custody/accountability boundaries for issued semi-expendable items and equipment assets.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1du-xu66M1voAfAGBZeHe1kfdqig-x-O3oKvCCY27IKs/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PROPERTY ACKNOWLEDGMENT RECEIPT (PAR)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 73</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Establishes full operational user ownership and accountability definitions for long-term fixed assets.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1du-xu66M1voAfAGBZeHe1kfdqig-x-O3oKvCCY27IKs/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase-4" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-truck-ramp-box text-blue-600"></i> 4. Property Transfer & Disposal Phase
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PROPERTY TRANSFER REPORT (PTR)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 76</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Required tracking instrument when active office equipment gets reallocated or transferred to separate accounts.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/12O05vCOjrs_BtTJtt7lAZue7bnubndXpeV-mQQrhZFc/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">WASTE MATERIALS REPORT (WMR)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 65</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Formal disposal ledger processing unserviceable structural properties or damaged expendable items.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/12O05vCOjrs_BtTJtt7lAZue7bnubndXpeV-mQQrhZFc/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">INVENTORY & INSPECTION REPORT OF UNSERVICEABLE PROPERTY (IIRUP)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 74</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Mandatory investigative ledger detailing overall assessments regarding deprecated fixed asset units.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/12O05vCOjrs_BtTJtt7lAZue7bnubndXpeV-mQQrhZFc/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase-5" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-wallet text-blue-600"></i> 5. Petty Cash Operations Phase
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PETTY CASH VOUCHER (PCV)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 48</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Individual cash draw authorizations addressing minor immediate emergency workplace costs.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1aM904c10H0-9WJ1Z-z-e-7-2-mS5k3A8" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">REPORT ON PAID PETTY CASH VOUCHERS (RPPCV)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 49</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Aggregated cost metrics required to formalize replenishment tracking over allocated cash drawers.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1aM904c10H0-9WJ1Z-z-e-7-2-mS5k3A8" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PETTY CASH FUND RECORD (PCFR)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 50</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Detailed local balancing log kept by custodians monitoring day-to-day liquidity reserves.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1aM904c10H0-9WJ1Z-z-e-7-2-mS5k3A8" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">PETTY CASH FUND REGISTER (PCFRg)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 51</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Formal accounting book entry capturing comprehensive financial transactions affecting cash pools.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1aM904c10H0-9WJ1Z-z-e-7-2-mS5k3A8" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase-coa" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-building-shield text-amber-600"></i> Reports Required for COA Submission
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-amber-50/40 rounded-xl shadow-sm border border-amber-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">REPORT ON THE PHYSICAL COUNT OF INVENTORIES (RPCI)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App. 66</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-4">Official layout for material audits across standard warehouse configurations.</p>
+                                <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded mb-4"><i class="fa-solid fa-calendar-days mr-1"></i> Submitted Semi-Annually</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/14z2P0u2U4608c1h2M-8A8S01q8t5" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase">GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase">Template</a>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50/40 rounded-xl shadow-sm border border-amber-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">REPORT ON THE PHYSICAL COUNT OF PROPERTY, PLANT & EQUIPMENT (RPCPPE)</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App. 72</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-4">Consolidated high-tier tracking document verifying fixed infrastructures and high-value capital assets equipment installations.</p>
+                                <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded mb-4"><i class="fa-solid fa-calendar-days mr-1"></i> Submitted Annually</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/14z2P0u2U4608c1h2M-8A8S01q8t5" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase">GDrive</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase">Template</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase-7" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-gavel text-blue-600"></i> 7. Regulatory and Circulars
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow">
+                            <h3 class="font-bold text-slate-800 mb-3">COA Regulatory Documents</h3>
+                            <a href="https://drive.google.com/open?id=1KKE_gR4DKiPcwDgp6Lqgt2wJVYV3Hc2c&usp=drive_copy" target="_blank" class="block text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded uppercase">Open Folder</a>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow">
+                            <h3 class="font-bold text-slate-800 mb-3">ISO Folder</h3>
+                            <a href="https://drive.google.com/open?id=1eOcbc_C4zcramNshnfPr80O__69EMZJ-&usp=drive_copy" target="_blank" class="block text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded uppercase">Open Folder</a>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow">
+                            <h3 class="font-bold text-slate-800 mb-3">NGAs Volume II</h3>
+                            <a href="https://drive.google.com/open?id=1sKO02eeD35qGDQOUfaCE_sLygq-dxaAY&usp=drive_copy" target="_blank" class="block text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded uppercase">Open Folder</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+    function filterPhase(phaseId) {
+        document.querySelectorAll('.phase-section').forEach(section => {
+            if (phaseId === 'all' || section.id === phaseId) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            if (btn.id === `btn-${phaseId}`) {
+                btn.classList.add('bg-blue-50', 'text-blue-600', 'font-semibold');
+                btn.classList.remove('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900');
+            } else {
+                btn.classList.remove('bg-blue-50', 'text-blue-600', 'font-semibold');
+                btn.classList.add('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900', 'font-medium');
+            }
+        });
+    }
+    </script>
+</body>
+</html>
