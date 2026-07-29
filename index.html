@@ -24,6 +24,10 @@
                 <span>All Forms</span>
             </button>
             <hr class="my-2 border-slate-200">
+            <button onclick="filterPhase('phase-0')" id="btn-phase-0" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <i class="fa-solid fa-book-open w-5"></i>
+                <span class="text-left">Incoming & Outgoing Communications</span>
+            </button>
             <button onclick="filterPhase('phase-1')" id="btn-phase-1" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
                 <i class="fa-solid fa-cart-shopping w-5"></i>
                 <span class="text-left">1. Procurement & Receipt</span>
@@ -46,7 +50,7 @@
             </button>
             <button onclick="filterPhase('phase-coa')" id="btn-phase-coa" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
                 <i class="fa-solid fa-building-shield w-5"></i>
-                <span class="text-left">COA Submissions</span>
+                <span class="text-left">6. COA Submissions</span>
             </button>
             <button onclick="filterPhase('phase-7')" id="btn-phase-7" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
                 <i class="fa-solid fa-gavel w-5"></i>
@@ -55,7 +59,7 @@
         </nav>
 
         <div class="p-4 border-t border-slate-200 text-center">
-            <p class="text-[10px] text-slate-400"> Developed by D.V.LABAJO<br>©2026 Supply Office Makato Portal.<br>Internal Use Only.</p>
+            <p class="text-[10px] text-slate-400">Developed by D.V. LABAJO<br>©2026 Supply Office Makato Portal.<br>Internal Use Only.</p>
         </div>
     </aside>
 
@@ -73,6 +77,28 @@
 
         <div class="p-8 flex-1 overflow-y-auto">
             <div id="forms-container" class="space-y-12">
+
+                <!-- Phase 0 -->
+                <section id="phase-0" class="phase-section">
+                    <h2 class="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-book-open text-blue-600"></i> Incoming and Outgoing Communications
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <h3 class="font-bold text-slate-800 leading-snug">Incoming and Outgoing Communications Logbook</h3>
+                                    <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 60</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-6">Detailed inflow and outflow transactions in Supply and Procurement Management Office.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mt-auto">
+                                <a href="https://docs.google.com/spreadsheets/d/1OyrYNGMotYyRRLbg21OuBS5_ffTrNEYN4tTiF9EJsMQ/edit?usp=drive_link" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> Logbook</a>
+                                <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Phase 1 -->
                 <section id="phase-1" class="phase-section">
@@ -177,7 +203,7 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
-                               <div>
+                            <div>
                                 <div class="flex items-start justify-between mb-3">
                                     <h3 class="font-bold text-slate-800 leading-snug">INVENTORY CUSTODIAN SLIP (ICS)</h3>
                                     <span class="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">App. 59</span>
@@ -211,7 +237,6 @@
                         <i class="fa-solid fa-truck-ramp-box text-blue-600"></i> 4. Property Transfer & Disposal Phase
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- PTR -->
                         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
                             <div>
                                 <div class="flex items-start justify-between mb-3">
@@ -225,7 +250,6 @@
                                 <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
                             </div>
                         </div>
-                        <!-- ITR -->
                         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
                             <div>
                                 <div class="flex items-start justify-between mb-3">
@@ -239,7 +263,6 @@
                                 <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
                             </div>
                         </div>
-                        <!-- WMR -->
                         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
                             <div>
                                 <div class="flex items-start justify-between mb-3">
@@ -253,7 +276,6 @@
                                 <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
                             </div>
                         </div>
-                        <!-- IIRUP -->
                         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
                             <div>
                                 <div class="flex items-start justify-between mb-3">
@@ -341,12 +363,11 @@
                             <div>
                                 <div class="flex items-start justify-between mb-3">
                                     <h3 class="font-bold text-slate-800 leading-snug">REPORT OF SUPPLIES & MATERIALS ISSUED (RSMI)</h3>
-                                     <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App.64</span>
+                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App. 64</span>
                                 </div>
                                 <p class="text-xs text-slate-500 mb-6">Consolidates all item disbursements authorized via RIS throughout operational windows.</p>
                             </div>
- <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded mb-4"><i class="fa-solid fa-calendar-days mr-1"></i> Submitted Monthly consolidated with the Accounting Office</span>
- 
+                            <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded mb-4"><i class="fa-solid fa-calendar-days mr-1"></i> Submitted Monthly consolidated with the Accounting Office</span>
                             <div class="grid grid-cols-2 gap-2 mt-auto">
                                 <a href="https://docs.google.com/spreadsheets/d/1adC2f9VNuZlhe3wX06_u9dM-VVas2wlL_P7huuM3hAI/edit?gid=1520388172#gid=1520388172" target="_blank" class="text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded transition-colors uppercase"><i class="fa-solid fa-folder-open mr-1"></i> GDrive</a>
                                 <a href="#" class="text-center text-xs font-semibold py-2 px-3 bg-slate-500 hover:bg-slate-600 text-white rounded transition-colors uppercase"><i class="fa-solid fa-download mr-1"></i> Template</a>
@@ -356,9 +377,9 @@
                             <div>
                                 <div class="flex items-start justify-between mb-3">
                                     <h3 class="font-bold text-slate-800 leading-snug">REPORT ON THE PHYSICAL COUNT OF INVENTORIES (RPCI)</h3>
-                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App.66</span>
+                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App. 66</span>
                                 </div>
-                                <p class="text-xs text-slate-600 mb-4">Official inventory for supplies and materials .</p>
+                                <p class="text-xs text-slate-600 mb-4">Official inventory for supplies and materials.</p>
                                 <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded mb-4"><i class="fa-solid fa-calendar-days mr-1"></i> Submitted Semi-Annually</span>
                             </div>
                             <div class="grid grid-cols-2 gap-2 mt-auto">
@@ -370,7 +391,7 @@
                             <div>
                                 <div class="flex items-start justify-between mb-3">
                                     <h3 class="font-bold text-slate-800 leading-snug">REPORT ON THE PHYSICAL COUNT OF PROPERTY, PLANT & EQUIPMENT (RPCPPE)</h3>
-                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App.72</span>
+                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">App. 72</span>
                                 </div>
                                 <p class="text-xs text-slate-600 mb-4">Consolidated high-tier tracking document verifying fixed infrastructures and high-value capital assets equipment installations.</p>
                                 <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded mb-4"><i class="fa-solid fa-calendar-days mr-1"></i> Submitted Annually</span>
@@ -384,9 +405,9 @@
                             <div>
                                 <div class="flex items-start justify-between mb-3">
                                     <h3 class="font-bold text-slate-800 leading-snug">REPORT ON THE PHYSICAL COUNT OF SEMI-EXPENDABLE PROPERTY (RPCSP)</h3>
-                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">AnnexA.8</span>
+                                    <span class="text-xs font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">Annex A.8</span>
                                 </div>
-                                <p class="text-xs text-slate-600 mb-4">Consolidated Semi-expendable tracking document verifying high and low value semi-expendable property and equipment .</p>
+                                <p class="text-xs text-slate-600 mb-4">Consolidated Semi-expendable tracking document verifying high and low value semi-expendable property and equipment.</p>
                                 <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded mb-4"><i class="fa-solid fa-calendar-days mr-1"></i> Submitted Annually</span>
                             </div>
                             <div class="grid grid-cols-2 gap-2 mt-auto">
@@ -403,15 +424,15 @@
                         <i class="fa-solid fa-gavel text-blue-600"></i> 7. Regulatory and Circulars
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow flex flex-col justify-between">
                             <h3 class="font-bold text-slate-800 mb-3">COA Regulatory Documents</h3>
                             <a href="https://drive.google.com/open?id=1KKE_gR4DKiPcwDgp6Lqgt2wJVYV3Hc2c&usp=drive_copy" target="_blank" class="block text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded uppercase">Open Folder</a>
                         </div>
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow flex flex-col justify-between">
                             <h3 class="font-bold text-slate-800 mb-3">ISO Folder</h3>
                             <a href="https://drive.google.com/open?id=1eOcbc_C4zcramNshnfPr80O__69EMZJ-&usp=drive_copy" target="_blank" class="block text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded uppercase">Open Folder</a>
                         </div>
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow flex flex-col justify-between">
                             <h3 class="font-bold text-slate-800 mb-3">NGAs Volume II</h3>
                             <a href="https://drive.google.com/open?id=1sKO02eeD35qGDQOUfaCE_sLygq-dxaAY&usp=drive_copy" target="_blank" class="block text-center text-xs font-semibold py-2 px-3 bg-[#10b981] hover:bg-[#059669] text-white rounded uppercase">Open Folder</a>
                         </div>
